@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class JugadorBola : MonoBehaviour
 {
     // Public
+    public AudioClip sonidoDiamante;
+    public AudioClip poyo;
     public Camera camara; // Referencia a la camara
     public GameObject suelo; // Referencia al suelo
     public float velocidad = 50.0f; // Velocidad de la bola
@@ -19,6 +21,7 @@ public class JugadorBola : MonoBehaviour
     // Start se llama antes de la primera actualización del frame
     void Start()
     {
+        Sonidos.controlSonidos.Reproducir(poyo);
         offset = camara.transform.position; // Calcula el offset de la camara
         CrearSueloInicial(); // Crea el suelo inicial
         DireccionActual = Vector3.forward; // Inicializa la direccion de la bola
@@ -49,6 +52,7 @@ public class JugadorBola : MonoBehaviour
             CambiarDireccion();
         }
         // Hacer que la bola se siga moviendo
+        transform.Rotate(Vector3.forward, 100.0f, Space.World);
         transform.Translate(DireccionActual * velocidad * Time.deltaTime);
     }
 
@@ -57,6 +61,7 @@ public class JugadorBola : MonoBehaviour
         // Aumenta la puntuacion si Kirby toca un premio
         if (other.gameObject.CompareTag("Premio"))
         {
+            Sonidos.controlSonidos.Reproducir(sonidoDiamante);
             other.gameObject.SetActive(false);
             puntuacion = puntuacion + 1;
             Debug.Log("Puntuacion: " + puntuacion);
@@ -83,10 +88,12 @@ public class JugadorBola : MonoBehaviour
         if (DireccionActual == Vector3.forward)
         {
             DireccionActual = Vector3.right;
+            //transform.Rotate(Vector3.right, 10.0f, Space.World);
         } // Si la direccion actual es hacia la derecha, cambia a la izquierda
         else
         {
             DireccionActual = Vector3.forward;
+            //transform.Rotate(Vector3.forward, 10.0f, Space.World);
         }
     }
 

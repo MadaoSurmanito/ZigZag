@@ -518,6 +518,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+--- !u!1 &1575892514 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1000013656696560, guid: cd34118c604e29141afea74caecd70f2, type: 3}
+  m_PrefabInstance: {fileID: 359761010}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1575892519
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575892514}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4059367, y: 2.4380145, z: 2.4853024}
+  m_Center: {x: -0.0000032782555, y: -0.0000026822097, z: -0.7140475}
 --- !u!1 &1609625352
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,7 +601,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8f4c65aaeb7f4c24599f225035383ad9, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -659,32 +685,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &1575892514 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1000013656696560, guid: cd34118c604e29141afea74caecd70f2, type: 3}
-  m_PrefabInstance: {fileID: 359761010}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1575892519
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1575892514}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.4059367, y: 2.4380145, z: 2.4853024}
-  m_Center: {x: -0.0000032782555, y: -0.0000026822097, z: -0.7140475}
 --- !u!1 &1819295859
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +831,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8190f7f66bb8bb40b0076648f2cbfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sonidoDiamante: {fileID: 8300000, guid: 398d5d3c575ff3244929f77dd1767a51, type: 3}
+  poyo: {fileID: 8300000, guid: ef960212a75706d42ba3294c6f82b429, type: 3}
   camara: {fileID: 1464209678}
   suelo: {fileID: 827438115}
   velocidad: 5
@@ -908,3 +910,5 @@ SceneRoots:
   - {fileID: 1819295864}
   - {fileID: 2746888263386582885}
   - {fileID: 1324925368}
+  - {fileID: 359761010}
+  - {fileID: 1609625354}
