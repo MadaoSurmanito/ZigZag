@@ -1,33 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class JugadorBola : MonoBehaviour
 {
     // Public
     public Camera camara; // Referencia a la camara
-
     public GameObject suelo; // Referencia al suelo
- 
     public float velocidad = 50.0f; // Velocidad de la bola
-
     // Private
     private Vector3 offset; // Offset de la camara
-
     private Vector3 DireccionActual; // Direccion actual de la bola
-
     private float ValX, ValZ; // Valores de X y Z para la creacion de suelos
-
     private int maxSuelos = 3; // Maximo de suelos que se pueden crear
-
     private int suelosCreados = 0; // Contador de suelos creados
-
+    static int lvl = 1; // Nivel actual
     // Start se llama antes de la primera actualización del frame
     void Start()
     {
         offset = camara.transform.position; // Calcula el offset de la camara
         CrearSueloInicial(); // Crea el suelo inicial
         DireccionActual = Vector3.forward; // Inicializa la direccion de la bola
+    }
+
+    // Puntuacion del jugador
+    private int puntuacion = 0;
+
+    void CrearSueloInicial()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            ValZ += 6.0f;
+            Instantiate(suelo,
+            new Vector3(ValX, 15, ValZ),
+            Quaternion.identity);
+        }
     }
 
     // Update se llama una vez por frame
@@ -43,6 +51,31 @@ public class JugadorBola : MonoBehaviour
         // Hacer que la bola se siga moviendo
         transform.Translate(DireccionActual * velocidad * Time.deltaTime);
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Aumenta la puntuacion si Kirby toca un premio
+        if (other.gameObject.CompareTag("Premio"))
+        {
+            other.gameObject.SetActive(false);
+            puntuacion = puntuacion + 1;
+            Debug.Log("Puntuacion: " + puntuacion);
+            // si la puntuacion es igual a 5, se cambia de nivel
+            if (puntuacion == 5)
+            {
+                if(lvl == 4)
+                {
+                    SceneManager.LoadScene("Final");
+                }
+                lvl++;
+                puntuacion = 0;
+                // carga la escena de nivel 2
+                SceneManager.LoadScene("Nivel"+lvl);
+            }
+        }
+        other.gameObject.SetActive(false);
+    }
+
     // Cambia la direccion de la bola
     void CambiarDireccion()
     {
@@ -50,61 +83,61 @@ public class JugadorBola : MonoBehaviour
         if (DireccionActual == Vector3.forward)
         {
             DireccionActual = Vector3.right;
-        }
-        else // Si la direccion actual es hacia la derecha, cambia a la izquierda
+        } // Si la direccion actual es hacia la derecha, cambia a la izquierda
+        else
         {
             DireccionActual = Vector3.forward;
         }
     }
+
     // Si jugador toca el suelo, se crea otro suelo
     private void OnCollisionExit(Collision other)
     {
         if (other.gameObject.tag == "Suelo")
         {
-            StartCoroutine(BorrarSuelos(other.gameObject));
+            StartCoroutine(GeneraSuelos(other.gameObject));
         }
     }
 
-    IEnumerator BorrarSuelos(GameObject suelo)
+    IEnumerator GeneraSuelos(GameObject suelo)
     {
         // debug contador de suelos
-        Debug.Log("Suelos creados: " + suelosCreados);
         if (suelosCreados < maxSuelos)
         {
-            float aleatorio = Random.Range(0.0f, 1.0f);
-            if (aleatorio > 0.5)
-            {
-                ValX += 6.0f;
-            }
-            else
-            {
-                ValZ += 6.0f;
-            }
-            Instantiate(suelo,
-            new Vector3(ValX, 15, ValZ),
-            Quaternion.identity);
-            suelosCreados++;
+            SueloAleatoRio(suelo);
         }
+        /* Hace que caiga un suelo cada 1,5 segundos */
         yield return new WaitForSeconds(1.5f);
         suelo.gameObject.GetComponent<Rigidbody>().isKinematic = false;
         suelo.gameObject.GetComponent<Rigidbody>().useGravity = true;
         yield return new WaitForSeconds(1.5f);
+        /* Hace que caiga un suelo cada 1,5 segundos */
         if (suelosCreados > 0)
         {
             Destroy (suelo);
             suelosCreados--;
         }
     }
-
-    void CrearSueloInicial()
+    void SueloAleatoRio(GameObject suelo)
     {
-        for (int i = 0; i < 3; i++)
+        float aleatorio = Random.Range(0.0f, 1.0f);
+        if (aleatorio > 0.5)
+        {
+            ValX += 6.0f;
+        }
+        else
         {
             ValZ += 6.0f;
+        }
+        GameObject newSuelo = Instantiate(suelo, new Vector3(ValX, 15, ValZ), Quaternion.identity);
+        suelosCreados++;
 
-            Instantiate(suelo,
-            new Vector3(ValX, 15, ValZ),
-            Quaternion.identity);
+        // Generar un premio aleatorio el cual es un prefab
+        GameObject premio = GameObject.Find("Premio");
+        float aleatorioPremio = Random.Range(0.0f, 1.0f);
+        if (aleatorioPremio > 0.5)
+        {
+            Instantiate(premio, new Vector3(ValX, 16, ValZ), Quaternion.identity);
         }
     }
 }
