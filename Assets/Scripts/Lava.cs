@@ -28,7 +28,7 @@ public class Lava : MonoBehaviour
             // mensaje de debug 
             Debug.Log("Has tocado la lava");
             // carga SampleScene
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Inicio");
             
         }
     }
