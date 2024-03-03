@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sonidoDiamante: {fileID: 8300000, guid: 398d5d3c575ff3244929f77dd1767a51, type: 3}
   poyo: {fileID: 8300000, guid: ef960212a75706d42ba3294c6f82b429, type: 3}
-  camara: {fileID: 0}
+  camara: {fileID: 280654768}
   suelo: {fileID: 8601495196603887630, guid: b66adf460beb91546aae07efdb792d71, type: 3}
   textoPuntuacion: {fileID: 634080372}
   puntuacion: 0

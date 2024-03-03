@@ -116,7 +116,6 @@ public class JugadorBola : MonoBehaviour
         if (DireccionActual == Vector3.forward)
         {
             DireccionActual = Vector3.right;
-            //transform.Rotate(Vector3.right, 10.0f, Space.World);
         } // Si la direccion actual es hacia la derecha, cambia a la izquierda
         else
         {

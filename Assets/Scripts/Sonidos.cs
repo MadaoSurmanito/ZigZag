@@ -37,14 +37,14 @@ public class Sonidos : MonoBehaviour
         {
             sonido.loop = true;
             sonido.clip = musicaJuego;
-            sonido.volume = 0.15f;
+            sonido.volume = 0.1f;
             sonido.Play();
         }
         else
         {
             sonido.loop = true;
             sonido.clip = musicaFinal;
-            sonido.volume = 0.15f;
+            sonido.volume = 0.1f;
             sonido.Play();
         }
     }
