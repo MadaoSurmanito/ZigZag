@@ -8,6 +8,7 @@ TagManager:
   - Suelo
   - Lavaa
   - Premio
+  - BotonFinal
   layers:
   - Default
   - TransparentFX

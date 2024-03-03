@@ -25,8 +25,11 @@ public class Lava : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // mensaje de debug 
-            Debug.Log("Has tocado la lava");
+            // Reinicia el nivel
+            JugadorBola.velocidad = 6.0f;
+            JugadorBola.lvl = 1;
+            JugadorBola.distanciaSuelo = 6.0f;
+
             // carga SampleScene
             SceneManager.LoadScene("Inicio");
             

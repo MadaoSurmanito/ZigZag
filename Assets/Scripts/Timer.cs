@@ -13,8 +13,12 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "Inicio")
+        {
+            tiempo = 0;
+        }
         // Si la escena es la final, muestra el tiempo
-        if (SceneManager.GetActiveScene().name == "Final")
+        else if (SceneManager.GetActiveScene().name == "Final")
         {
             textoTiempo.text = "Has tardado: " + tiempo.ToString("f1") + " segundos";
         }
@@ -24,7 +28,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         // Si la escena no es la final, se actualiza el tiempo
-        if (SceneManager.GetActiveScene().name != "Final")
+        if (SceneManager.GetActiveScene().name != "Final" && SceneManager.GetActiveScene().name != "Inicio")
         {
             tiempo += Time.deltaTime;
             textoTiempo.text = "" + tiempo.ToString("f1");
