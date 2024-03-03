@@ -11,9 +11,7 @@ public class CuentaAtras : MonoBehaviour
     // Public
     private Button boton;
 
-    public Image imagen;
-
-    public Sprite[] numeros;
+    public Text textoContador;
 
     // Start is called before the first frame update
     void Start()
@@ -24,16 +22,16 @@ public class CuentaAtras : MonoBehaviour
 
     void Empezar()
     {
-        imagen.gameObject.SetActive(true);
+        textoContador.gameObject.SetActive(true);
         boton.gameObject.SetActive(false);
         StartCoroutine(cuentaAtras());
     }
 
     IEnumerator cuentaAtras()
     {
-        for (int i = 0; i < numeros.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
-            imagen.sprite = numeros[i];
+            textoContador.text = (3 - i).ToString();
             yield return new WaitForSeconds(1);
         }
         SceneManager.LoadScene("Nivel1");

@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Si la escena no es la final, se actualiza el tiempo
+        // Si la escena no es la final o inicio, se actualiza el tiempo
         if (SceneManager.GetActiveScene().name != "Final" && SceneManager.GetActiveScene().name != "Inicio")
         {
             tiempo += Time.deltaTime;

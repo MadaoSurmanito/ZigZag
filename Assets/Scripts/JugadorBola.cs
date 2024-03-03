@@ -58,12 +58,9 @@ public class JugadorBola : MonoBehaviour
         // Hacer que la camara siga a la bola
         camara.transform.position = transform.position + offset;
 
-        // Vector3 VelHorizontal = DireccionActual  * velocidad;
-        // VelHorizontal.y = GetComponent<Rigidbody>().velocity.y;
-        // GetComponent<Rigidbody>().velocity = VelHorizontal;
-        // Hacer que la bola se siga moviendo
-        //transform.Rotate(Vector3.forward, 100.0f, Space.World);
-        transform.Translate(DireccionActual * velocidad * Time.deltaTime);
+        Vector3 VelHorizontal = DireccionActual  * velocidad;
+        VelHorizontal.y = GetComponent<Rigidbody>().velocity.y;
+        GetComponent<Rigidbody>().velocity = VelHorizontal;
     }
 
     void CrearSueloInicial()
@@ -101,6 +98,7 @@ public class JugadorBola : MonoBehaviour
                     velocidad += 4.0f;
                     if (lvl == 3)
                     {
+                        velocidad -= 4.0f;
                         distanciaSuelo = 4.0f;
                     }
                     // carga la escena de nivel siguiente
@@ -167,7 +165,7 @@ public class JugadorBola : MonoBehaviour
         // Generar un premio aleatorio el cual es un prefab
         GameObject premio = GameObject.Find("Premio");
         float aleatorioPremio = Random.Range(0.0f, 1.0f);
-        if (aleatorioPremio > 0.7)
+        if (aleatorioPremio > 0.9)
         {
             Instantiate(premio,
             new Vector3(ValX, 16, ValZ),
