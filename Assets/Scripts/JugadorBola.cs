@@ -164,7 +164,7 @@ public class JugadorBola : MonoBehaviour
         // Generar un premio aleatorio el cual es un prefab
         GameObject premio = GameObject.Find("Premio");
         float aleatorioPremio = Random.Range(0.0f, 1.0f);
-        if (aleatorioPremio > 0.9)
+        if (aleatorioPremio > 0.75)
         {
             Instantiate(premio,
             new Vector3(ValX, 16, ValZ),
