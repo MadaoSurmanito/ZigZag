@@ -100,6 +100,7 @@ MonoBehaviour:
   isRotating: 1
   isFloating: 0
   isScaling: 0
+  particulaPremio: {fileID: 7112414813299672300, guid: b40716fce0fdf3f47b59ae15fba26ce5, type: 3}
   rotationAngle: {x: 0, y: 0, z: 10}
   rotationSpeed: 10
   floatSpeed: 0.04

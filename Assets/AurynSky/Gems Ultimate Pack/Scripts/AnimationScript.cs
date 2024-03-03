@@ -9,6 +9,8 @@ public class AnimationScript : MonoBehaviour {
     public bool isFloating = false;
     public bool isScaling = false;
 
+    public GameObject particulaPremio;
+
     public Vector3 rotationAngle;
     public float rotationSpeed;
 
@@ -85,4 +87,12 @@ public class AnimationScript : MonoBehaviour {
             }
         }
 	}
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            Instantiate(particulaPremio, transform.position, particulaPremio.transform.rotation);
+        }
+    }
 }

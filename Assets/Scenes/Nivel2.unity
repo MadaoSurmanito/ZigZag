@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657755, g: 0.4964127, b: 0.57481825, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657695, g: 0.49641138, b: 0.5748176, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1241,6 +1241,7 @@ MonoBehaviour:
   camara: {fileID: 1306380597}
   suelo: {fileID: 827438115}
   textoPuntuacion: {fileID: 384672666}
+  particulaPremio: {fileID: 7112414813299672300, guid: b40716fce0fdf3f47b59ae15fba26ce5, type: 3}
   puntuacion: 0
 --- !u!1001 &2746888263386582885
 PrefabInstance:
