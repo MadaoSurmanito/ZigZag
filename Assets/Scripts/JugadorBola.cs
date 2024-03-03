@@ -32,7 +32,9 @@ public class JugadorBola : MonoBehaviour
     public static int lvl = 1; // Nivel actual
 
     public static float velocidad = 6.0f; // Velocidad de la bola
+
     public static float distanciaSuelo = 6.0f; // Distancia entre suelos
+
     // Start se llama antes de la primera actualización del frame
     void Start()
     {
@@ -58,7 +60,7 @@ public class JugadorBola : MonoBehaviour
         // Hacer que la camara siga a la bola
         camara.transform.position = transform.position + offset;
 
-        Vector3 VelHorizontal = DireccionActual  * velocidad;
+        Vector3 VelHorizontal = DireccionActual * velocidad;
         VelHorizontal.y = GetComponent<Rigidbody>().velocity.y;
         GetComponent<Rigidbody>().velocity = VelHorizontal;
     }
@@ -90,6 +92,10 @@ public class JugadorBola : MonoBehaviour
                 lvl++;
                 if (lvl >= 4)
                 {
+                    // Reinicia el nivel
+                    velocidad = 6.0f;
+                    lvl = 1;
+                    distanciaSuelo = 6.0f;
                     SceneManager.LoadScene("Final");
                 }
                 else
@@ -101,6 +107,7 @@ public class JugadorBola : MonoBehaviour
                         velocidad -= 4.0f;
                         distanciaSuelo = 4.0f;
                     }
+
                     // carga la escena de nivel siguiente
                     SceneManager.LoadScene("Nivel" + lvl);
                 }
